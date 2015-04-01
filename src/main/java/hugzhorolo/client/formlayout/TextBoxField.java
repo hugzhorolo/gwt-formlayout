@@ -1,61 +1,108 @@
 package hugzhorolo.client.formlayout;
 
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.json.client.JSONNumber;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class TextBoxField extends FormField {
 
-	public static class TextBoxConfigBuilder {		
-		
-		public TextBoxConfigBuilder() {
-		}
-		
-		public TextBoxConfigBuilder maxLength(int lenght){
-			//todo;
-			return this;
-		}
-		
-		public String build(){
-			return null;
-		}
-	}
+  public static class TextBoxConfigBuilder {
 
-	@Override
-	public void setFieldConfig(FieldConfig fieldConfig) {
-	}
-	
-	@Override
-	public Widget asWidget() {
-		return null;
-	}
+    private static final String K_MAXLENGTH = "maxLength";
+    private JSONObject config = new JSONObject();
+    
+    public TextBoxConfigBuilder() {
+    }
 
-	@Override
-	public String getValue() {
-		return null;
-	}
+    public TextBoxConfigBuilder maxLength(int maxLength) {
+      config.put(K_MAXLENGTH, new JSONNumber(maxLength));
+      return this;
+    }
 
-	@Override
-	public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Void> handler) {
-		return null;
-	}
+    public String build() {
+      return config.toString();
+    }
+    
+    public static TextBoxConfigBuilder parse(String json){
+      TextBoxConfigBuilder builder = new TextBoxConfigBuilder();
+      builder.config = JSONParser.parseLenient(json).isObject();
+      return builder;
+    }
+  }
+  private FieldConfig fieldConfig;
+  private TextBoxConfigBuilder specConfig;
+  private TextBox textBox = new TextBox();
+  private String key;
+  
+  @Override
+  public void setFieldConfig(FieldConfig fieldConfig) {
+    this.fieldConfig = fieldConfig;
+    if (fieldConfig.getFormFieldSpecificConfigJson() != null){
+      specConfig = TextBoxConfigBuilder.parse(fieldConfig.getFormFieldSpecificConfigJson());
+    }   
+    
+  }
 
-	@Override
-	public void fireEvent(GwtEvent<?> event) {
-	}
+  @Override
+  public Widget asWidget() {
+    return textBox;
+  }
 
-	@Override
-	public void setVisible(boolean isVisible) {
-	}
+  @Override
+  public String getValue() {
+    return new JSONString(textBox.getValue()).toString();
+  }
+  
 
-	@Override
-	void setValue(JSONValue value, JSONValue formData) {
-	}
+  @Override
+  public JSONValue getJsonValue() {
+    return new JSONString(textBox.getValue());
+  }
 
-	@Override
-	public void setValue(String valueJson) {
-	}
+
+  @Override
+  public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Void> handler) {
+    return textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+      @Override
+      public void onValueChange(ValueChangeEvent<String> event) {
+        handler.onValueChange(null);
+      }
+    });
+  }
+
+  @Override
+  public void fireEvent(GwtEvent<?> event) {
+    textBox.fireEvent(event);
+  }
+
+  @Override
+  public void setVisible(boolean isVisible) {
+    textBox.setVisible(isVisible);
+  }
+
+
+  @Override
+  public void setValue(String valueJson) {
+    if (valueJson != null){
+      textBox.setText(JSONParser.parseStrict(valueJson).isString().stringValue());
+    }
+  }
+
+  @Override
+  public void setValue(String key, JSONValue value, JSONValue formData) {
+    this.key = key;
+    if (value != null){
+      textBox.setText(value.isString().stringValue());
+    }
+  }
 
 }

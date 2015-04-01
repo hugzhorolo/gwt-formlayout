@@ -3,37 +3,37 @@ package hugzhorolo.client.formlayout;
 
 public class FieldConfig {
 
-	private String fieldName;
-	
-	private FormField fieldWidget;
-	
-	private String formFieldSpecificConfigJson;
+  private String fieldName;
 
-	public FieldConfig(String fieldName) {
-		super();
-		this.fieldName = fieldName;
-	}
-	
-	public FieldConfig setFieldWidget(FormField formField){
-		return this;
-	}
-	
-	public FieldConfig setSpecificConfig(String specificConfigJson){
-		return this;
-	}
+  private FormField fieldWidget;
 
-	public String getFieldName() {
-		return fieldName;
-	}
+  private String formFieldSpecificConfigJson;
 
-	public FormField getFieldWidget() {
-		return fieldWidget;
-	}
+  public FieldConfig(String fieldName) {
+    super();
+    this.fieldName = fieldName;
+  }
 
-	public String getFormFieldSpecificConfigJson() {
-		return formFieldSpecificConfigJson;
-	}
-	
-	
-	
+  public FieldConfig setFieldWidget(FormField formField) {
+    return this;
+  }
+
+  public FieldConfig setSpecificConfig(String specificConfigJson) {
+    return this;
+  }
+
+  public String getFieldName() {
+    return fieldName;
+  }
+
+  public FormField getFieldWidget() {
+    return fieldWidget;
+  }
+
+  public String getFormFieldSpecificConfigJson() {
+    return formFieldSpecificConfigJson;
+  }
+
+
+
 }
