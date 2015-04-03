@@ -15,9 +15,9 @@ public class NumberBoxField extends FormField {
   private TextBox textBox = new TextBox();
   
   @Override
-  public void setFieldConfig(FieldConfig fieldConfig) {
+  public void onFieldConfigSet() {
   }
-
+  
   @Override
   public Widget asWidget() {
     return textBox;

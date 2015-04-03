@@ -1,6 +1,5 @@
 package hugzhorolo.client;
 
-import hugzhorolo.client.formlayout.FieldConfig;
 import hugzhorolo.client.formlayout.FormField;
 
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -11,11 +10,10 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class CustomFormField extends FormField {
 
-
   @Override
-  public void setFieldConfig(FieldConfig fieldConfig) {
+  public void onFieldConfigSet() {
   }
-
+  
   @Override
   public Widget asWidget() {
     return null;

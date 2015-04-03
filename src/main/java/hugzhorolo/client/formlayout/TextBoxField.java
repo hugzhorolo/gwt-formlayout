@@ -37,14 +37,18 @@ public class TextBoxField extends FormField {
       return builder;
     }
   }
-  private FieldConfig fieldConfig;
+  
   private TextBoxConfigBuilder specConfig;
   private TextBox textBox = new TextBox();
   private String key;
+  private FormLayoutStyle style = Res.INST.get().style();
+  
+  public TextBoxField() {
+    textBox.addStyleName(style.TextBoxField());
+  }
   
   @Override
-  public void setFieldConfig(FieldConfig fieldConfig) {
-    this.fieldConfig = fieldConfig;
+  public void onFieldConfigSet() {
     if (fieldConfig.getFormFieldSpecificConfigJson() != null){
       specConfig = TextBoxConfigBuilder.parse(fieldConfig.getFormFieldSpecificConfigJson());
     }   

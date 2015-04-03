@@ -44,8 +44,9 @@ public class FormLayout extends FlowPanel {
   private void renderFields() throws Exception {
     for (String key : fieldOrder) {
       FormField field = createField(key);
-      add(field);
+      config.getRenderer().addField(field);
     }
+    add(config.getRenderer());
   }
 
   private FormField createField(String key) throws Exception {

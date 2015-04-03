@@ -1,8 +1,5 @@
 package hugzhorolo.client;
 
-import java.util.HashSet;
-import java.util.logging.Level;
-
 import hugzhorolo.client.formlayout.FieldConfig;
 import hugzhorolo.client.formlayout.FormConfig;
 import hugzhorolo.client.formlayout.FormLayout;
@@ -22,7 +19,6 @@ import com.google.gwt.json.client.JSONString;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.web.bindery.event.shared.UmbrellaException;
 
 public class App implements EntryPoint {
 

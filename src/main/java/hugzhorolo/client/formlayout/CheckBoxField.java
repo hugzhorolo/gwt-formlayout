@@ -15,10 +15,9 @@ public class CheckBoxField extends FormField {
   private CheckBox checkBox = new CheckBox();
 
   @Override
-  public void setFieldConfig(FieldConfig fieldConfig) {
+  public void onFieldConfigSet() {
   }
-
-
+  
   @Override
   public Widget asWidget() {
     return checkBox;
@@ -71,4 +70,5 @@ public class CheckBoxField extends FormField {
       checkBox.setValue(JSONParser.parseStrict(valueJson).isBoolean().booleanValue());
     }
   }
+
 }
