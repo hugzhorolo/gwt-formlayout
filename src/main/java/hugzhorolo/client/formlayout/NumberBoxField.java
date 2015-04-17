@@ -14,6 +14,12 @@ public class NumberBoxField extends FormField {
 
   private TextBox textBox = new TextBox();
   
+  private FormLayoutStyle style = Res.INST.get().style();
+  
+  public NumberBoxField() {
+    textBox.addStyleName(style.TextBoxField());
+  }
+  
   @Override
   public void onFieldConfigSet() {
   }

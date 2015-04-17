@@ -8,11 +8,20 @@ import com.google.gwt.json.client.JSONBoolean;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CheckBoxField extends FormField {
 
+  private SimplePanel panel = new SimplePanel();
   private CheckBox checkBox = new CheckBox();
+  
+  private FormLayoutStyle style = Res.INST.get().style();
+  
+  public CheckBoxField() {
+    panel.addStyleName(style.CheckBoxField());
+    panel.add(checkBox);
+  }
 
   @Override
   public void onFieldConfigSet() {
@@ -20,7 +29,7 @@ public class CheckBoxField extends FormField {
   
   @Override
   public Widget asWidget() {
-    return checkBox;
+    return panel;
   }
 
   @Override

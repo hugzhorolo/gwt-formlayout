@@ -1,8 +1,49 @@
 .DefaultFormLayoutRenderer {
 	max-width: 300px;
 	width: 100%;
+	color: #666;
+	padding: 14px;
+	background-color: #fff;
+}
+
+.FieldTitle {
+	margin-top: 4px;
 }
 
 .TextBoxField {
 	width: 100%;
+	padding: 8px;
+	font-size: 14px;
+	margin-top: 4px;
+	margin-bottom: 6px;
+	color: #666;
+	box-sizing: border-box;
+	border: 1px solid #D1D1D1;
+}
+
+.CheckBoxField {
+	height: 16px;
+}
+
+.CheckBoxField input {
+	display: none;
+}
+
+.CheckBoxField label:before {
+	content: "";
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
+	position: absolute;
+	background-color: #fff;
+	border: 1px solid #D1D1D1;
+}
+
+.CheckBoxField input[type=checkbox]:checked + label:before {
+	content: "\2713";
+	font-size: 20px;
+	color: #666;
+	text-align: center;
+    line-height: 20px;
 }

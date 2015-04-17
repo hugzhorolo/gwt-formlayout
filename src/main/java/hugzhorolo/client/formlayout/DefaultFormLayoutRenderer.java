@@ -10,6 +10,8 @@ public class DefaultFormLayoutRenderer extends VerticalPanel implements FormLayo
   
   public DefaultFormLayoutRenderer() {
     addStyleName(style.DefaultFormLayoutRenderer());
+    setSpacing(0);
+    
   }
 
   @Override
@@ -19,7 +21,9 @@ public class DefaultFormLayoutRenderer extends VerticalPanel implements FormLayo
 
   @Override
   public void addField(FormField field) {
-    add(new Label(field.getFieldConfig().getFieldName()));
+    Label fieldTitle = new Label(field.getFieldConfig().getFieldName());
+    fieldTitle.addStyleName(style.FieldTitle());
+    add(fieldTitle);
     add(field);
   }
   
