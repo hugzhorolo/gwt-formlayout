@@ -11,6 +11,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.IsWidget;
 
 public class FormLayout extends FlowPanel {
 
@@ -123,4 +124,7 @@ public class FormLayout extends FlowPanel {
     return null;
   }
 
+  public void appendWidgetToBottom(IsWidget widget) {
+    config.getRenderer().appendWidgetToBottom(widget);
+  }
 }

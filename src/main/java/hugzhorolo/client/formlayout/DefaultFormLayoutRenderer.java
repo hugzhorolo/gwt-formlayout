@@ -1,5 +1,6 @@
 package hugzhorolo.client.formlayout;
 
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -25,6 +26,11 @@ public class DefaultFormLayoutRenderer extends VerticalPanel implements FormLayo
     fieldTitle.addStyleName(style.FieldTitle());
     add(fieldTitle);
     add(field);
+  }
+
+  @Override
+  public void appendWidgetToBottom(IsWidget widget) {
+    add(widget);
   }
 
 }

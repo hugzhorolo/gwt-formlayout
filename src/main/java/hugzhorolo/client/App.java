@@ -25,6 +25,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 // TODO: field key needed
 public class App implements EntryPoint {
 
+  private DemoStyle style = Res.INST.get().style();
+
   @Override
   public void onModuleLoad() {
     GWT.setUncaughtExceptionHandler(new SuperDevModeUncaughtExceptionHandler());
@@ -52,7 +54,8 @@ public class App implements EntryPoint {
     final FormLayout formLayout = new FormLayout(sampleData.toString());
     RootPanel.get().add(formLayout);
 
-    Button button = new Button("Finish editing");
+    Button button = new Button("Apply");
+    button.addStyleName(style.apply());
     button.addClickHandler(new ClickHandler() {
 
       @Override
@@ -61,7 +64,7 @@ public class App implements EntryPoint {
       }
     });
 
-    RootPanel.get().add(button);
+    formLayout.appendWidgetToBottom(button);
   }
 
   private void basicConfiguration() throws Exception {
@@ -102,7 +105,8 @@ public class App implements EntryPoint {
     });
     RootPanel.get().add(formLayout);
 
-    Button button = new Button("Finish editing");
+    Button button = new Button("Apply");
+    button.addStyleName(style.apply());
     button.addClickHandler(new ClickHandler() {
 
       @Override
@@ -111,6 +115,6 @@ public class App implements EntryPoint {
       }
     });
 
-    RootPanel.get().add(button);
+    formLayout.appendWidgetToBottom(button);
   }
 }

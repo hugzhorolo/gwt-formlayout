@@ -4,6 +4,7 @@
 	color: #666;
 	padding: 14px;
 	background-color: #fff;
+	margin: 10px;
 }
 
 .FieldTitle {
