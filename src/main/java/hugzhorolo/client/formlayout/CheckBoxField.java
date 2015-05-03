@@ -15,9 +15,9 @@ public class CheckBoxField extends FormField {
 
   private SimplePanel panel = new SimplePanel();
   private CheckBox checkBox = new CheckBox();
-  
+
   private FormLayoutStyle style = Res.INST.get().style();
-  
+
   public CheckBoxField() {
     panel.addStyleName(style.CheckBoxField());
     panel.add(checkBox);
@@ -26,14 +26,14 @@ public class CheckBoxField extends FormField {
   @Override
   public void onFieldConfigSet() {
   }
-  
+
   @Override
   public Widget asWidget() {
     return panel;
   }
 
   @Override
-  public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Void> handler) {    
+  public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Void> handler) {
     return checkBox.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
 
       @Override
@@ -66,16 +66,16 @@ public class CheckBoxField extends FormField {
 
 
   @Override
-  public void setValue(String key, JSONValue value, JSONValue formData) {
-    if (value != null){
+  public void setValue(JSONValue value, JSONValue formData) {
+    if (value != null) {
       checkBox.setValue(value.isBoolean().booleanValue());
     }
-    
+
   }
 
   @Override
   public void setValue(String valueJson) {
-    if (valueJson != null){
+    if (valueJson != null) {
       checkBox.setValue(JSONParser.parseStrict(valueJson).isBoolean().booleanValue());
     }
   }

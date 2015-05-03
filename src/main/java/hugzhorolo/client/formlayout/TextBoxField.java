@@ -4,8 +4,6 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.json.client.JSONNumber;
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
@@ -14,45 +12,37 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class TextBoxField extends FormField {
 
-  public static class TextBoxConfigBuilder {
+  public static class TextBoxConfig {
 
-    private static final String K_MAXLENGTH = "maxLength";
-    private JSONObject config = new JSONObject();
-    
-    public TextBoxConfigBuilder() {
+    private int maxLength;
+
+    public TextBoxConfig() {
     }
 
-    public TextBoxConfigBuilder maxLength(int maxLength) {
-      config.put(K_MAXLENGTH, new JSONNumber(maxLength));
+    public TextBoxConfig maxLength(int maxLength) {
+      this.maxLength = maxLength;
       return this;
     }
 
-    public String build() {
-      return config.toString();
-    }
-    
-    public static TextBoxConfigBuilder parse(String json){
-      TextBoxConfigBuilder builder = new TextBoxConfigBuilder();
-      builder.config = JSONParser.parseLenient(json).isObject();
-      return builder;
+    public int getMaxLength() {
+      return maxLength;
     }
   }
-  
-  private TextBoxConfigBuilder specConfig;
+
+  private TextBoxConfig specConfig;
   private TextBox textBox = new TextBox();
-  private String key;
   private FormLayoutStyle style = Res.INST.get().style();
-  
+
   public TextBoxField() {
     textBox.addStyleName(style.TextBoxField());
   }
-  
+
   @Override
   public void onFieldConfigSet() {
-    if (fieldConfig.getFormFieldSpecificConfigJson() != null){
-      specConfig = TextBoxConfigBuilder.parse(fieldConfig.getFormFieldSpecificConfigJson());
-    }   
-    
+    if (fieldConfig.getFormFieldSpecificConfig() != null) {
+      specConfig = (TextBoxConfig) fieldConfig.getFormFieldSpecificConfig();
+    }
+
   }
 
   @Override
@@ -64,7 +54,7 @@ public class TextBoxField extends FormField {
   public String getValue() {
     return new JSONString(textBox.getValue()).toString();
   }
-  
+
 
   @Override
   public JSONValue getJsonValue() {
@@ -96,15 +86,14 @@ public class TextBoxField extends FormField {
 
   @Override
   public void setValue(String valueJson) {
-    if (valueJson != null){
+    if (valueJson != null) {
       textBox.setText(JSONParser.parseStrict(valueJson).isString().stringValue());
     }
   }
 
   @Override
-  public void setValue(String key, JSONValue value, JSONValue formData) {
-    this.key = key;
-    if (value != null){
+  public void setValue(JSONValue value, JSONValue formData) {
+    if (value != null) {
       textBox.setText(value.isString().stringValue());
     }
   }

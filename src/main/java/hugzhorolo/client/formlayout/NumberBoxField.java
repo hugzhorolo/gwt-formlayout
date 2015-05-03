@@ -13,17 +13,17 @@ import com.google.gwt.user.client.ui.Widget;
 public class NumberBoxField extends FormField {
 
   private TextBox textBox = new TextBox();
-  
+
   private FormLayoutStyle style = Res.INST.get().style();
-  
+
   public NumberBoxField() {
     textBox.addStyleName(style.TextBoxField());
   }
-  
+
   @Override
   public void onFieldConfigSet() {
   }
-  
+
   @Override
   public Widget asWidget() {
     return textBox;
@@ -49,7 +49,7 @@ public class NumberBoxField extends FormField {
   public String getValue() {
     return new JSONNumber(Double.parseDouble(textBox.getText())).toString();
   }
-  
+
   @Override
   public JSONValue getJsonValue() {
     return new JSONNumber(Double.parseDouble(textBox.getText()));
@@ -61,7 +61,7 @@ public class NumberBoxField extends FormField {
   }
 
   @Override
-  public void setValue(String key, JSONValue value, JSONValue formData) {
+  public void setValue(JSONValue value, JSONValue formData) {
     textBox.setText("" + value.isNumber().doubleValue());
   }
 

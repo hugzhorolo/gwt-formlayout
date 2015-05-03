@@ -7,18 +7,19 @@ import com.google.gwt.user.client.ui.IsWidget;
 public abstract class FormField implements IsWidget, HasValueChangeHandlers<Void> {
 
   protected FieldConfig fieldConfig;
-  
-  public void setFieldConfig(FieldConfig fieldConfig){
+
+  public void setFieldConfig(FieldConfig fieldConfig) {
     this.fieldConfig = fieldConfig;
+    onFieldConfigSet();
   }
-  
-  public FieldConfig getFieldConfig(){
+
+  public FieldConfig getFieldConfig() {
     return fieldConfig;
   }
-  
+
   public abstract void onFieldConfigSet();
 
-  public abstract void setValue(String key, JSONValue value, JSONValue formData);
+  public abstract void setValue(JSONValue value, JSONValue formData);
 
   public abstract JSONValue getJsonValue();
 

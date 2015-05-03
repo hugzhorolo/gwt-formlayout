@@ -29,21 +29,21 @@ public class SuperDevModeUncaughtExceptionHandler implements GWT.UncaughtExcepti
   }
 
   private native void groupStart(String msg) /*-{
-		var groupStart = console.groupCollapsed || console.group
-				|| console.error || console.log;
-		groupStart.call(console, msg);
-  }-*/;
+                                             var groupStart = console.groupCollapsed || console.group
+                                             || console.error || console.log;
+                                             groupStart.call(console, msg);
+                                             }-*/;
 
   private native void groupEnd() /*-{
-		var groupEnd = console.groupEnd || function() {
-		};
-		groupEnd.call(console);
-  }-*/;
+                                 var groupEnd = console.groupEnd || function() {
+                                 };
+                                 groupEnd.call(console);
+                                 }-*/;
 
   private native void log(Throwable t) /*-{
-		var logError = console.error || console.log;
-		var backingError = t.__gwt$backingJsError;
-		logError.call(console, backingError && backingError.stack);
-  }-*/;
+                                       var logError = console.error || console.log;
+                                       var backingError = t.__gwt$backingJsError;
+                                       logError.call(console, backingError && backingError.stack);
+                                       }-*/;
 
 }

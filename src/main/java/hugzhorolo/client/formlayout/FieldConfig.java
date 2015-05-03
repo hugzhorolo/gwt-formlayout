@@ -7,7 +7,7 @@ public class FieldConfig {
 
   private FormField fieldWidget;
 
-  private String formFieldSpecificConfigJson;
+  private Object formFieldSpecificConfig;
 
   public FieldConfig(String fieldName) {
     super();
@@ -15,10 +15,12 @@ public class FieldConfig {
   }
 
   public FieldConfig setFieldWidget(FormField formField) {
+    this.fieldWidget = formField;
     return this;
   }
 
-  public FieldConfig setSpecificConfig(String specificConfigJson) {
+  public FieldConfig setSpecificConfig(Object specificConfig) {
+    this.formFieldSpecificConfig = specificConfig;
     return this;
   }
 
@@ -30,8 +32,8 @@ public class FieldConfig {
     return fieldWidget;
   }
 
-  public String getFormFieldSpecificConfigJson() {
-    return formFieldSpecificConfigJson;
+  public Object getFormFieldSpecificConfig() {
+    return formFieldSpecificConfig;
   }
 
 

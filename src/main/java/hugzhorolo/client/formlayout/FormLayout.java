@@ -67,11 +67,16 @@ public class FormLayout extends FlowPanel {
           + ". Consider using custom field (FieldConfig.setFieldWidget)");
       }
     }
-    if (fieldConfig == null){
+    if (fieldConfig == null) {
       fieldConfig = new FieldConfig(key);
     }
-    field.setFieldConfig(fieldConfig);
-    field.setValue(key, originalData.get(key), originalData);
+    try {
+      field.setFieldConfig(fieldConfig);
+    } catch (ClassCastException e) {
+      throw new RuntimeException("Invalid config provided for field: " + key +
+        "(" + field.getClass() + ", " + fieldConfig.getFormFieldSpecificConfig().getClass() + ")");
+    }
+    field.setValue(originalData.get(key), originalData);
     fields.add(field);
     return field;
 
@@ -113,7 +118,7 @@ public class FormLayout extends FlowPanel {
     throws Exception {
     return getField(key).addValueChangeHandler(handler);
   }
-  
+
   public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Void> handler) {
     return null;
   }

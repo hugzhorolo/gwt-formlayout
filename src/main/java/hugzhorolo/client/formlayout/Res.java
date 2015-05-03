@@ -22,4 +22,3 @@ public interface Res extends ClientBundle {
   public FormLayoutStyle style();
 
 }
-

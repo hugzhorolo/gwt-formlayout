@@ -3,7 +3,9 @@ package hugzhorolo.client;
 import hugzhorolo.client.formlayout.FieldConfig;
 import hugzhorolo.client.formlayout.FormConfig;
 import hugzhorolo.client.formlayout.FormLayout;
-import hugzhorolo.client.formlayout.TextBoxField.TextBoxConfigBuilder;
+import hugzhorolo.client.formlayout.ListBoxField;
+import hugzhorolo.client.formlayout.ListBoxField.ListBoxConfig;
+import hugzhorolo.client.formlayout.TextBoxField.TextBoxConfig;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -20,6 +22,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
+// TODO: field key needed
 public class App implements EntryPoint {
 
   @Override
@@ -27,7 +30,7 @@ public class App implements EntryPoint {
     GWT.setUncaughtExceptionHandler(new SuperDevModeUncaughtExceptionHandler());
     try {
       helloWorld();
-//      basicConfiguration();
+      basicConfiguration();
     } catch (Exception e) {
       log(e);
     }
@@ -66,6 +69,7 @@ public class App implements EntryPoint {
     sampleData.put("Field 1", new JSONNumber(1.0));
     sampleData.put("Field 2", new JSONString("Hello world"));
     sampleData.put("Field 3", JSONBoolean.getInstance(true));
+    sampleData.put("Field 4", new JSONString("Item 2"));
 
     final FormLayout formLayout =
       new FormLayout(
@@ -74,7 +78,13 @@ public class App implements EntryPoint {
           .addFieldConfig(
             new FieldConfig("Field 1").setFieldWidget(new CustomFormField()))
           .addFieldConfig(
-            new FieldConfig("Field 2").setSpecificConfig(new TextBoxConfigBuilder().maxLength(3).build()))
+            new FieldConfig("Field 2").setSpecificConfig(new TextBoxConfig().maxLength(3)))
+          .addFieldConfig(
+            new FieldConfig("Field 4").setFieldWidget(new ListBoxField()).setSpecificConfig(
+              new ListBoxConfig().stringValues(
+                "Item 1",
+                "Item 2",
+                "Item 3")))
       );
 
     formLayout.addValueChangeHandler("Field 3", new ValueChangeHandler<Void>() {

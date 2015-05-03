@@ -6,14 +6,14 @@ import java.util.List;
 public class FormConfig {
 
   private FormLayoutRenderer renderer = new DefaultFormLayoutRenderer();
-  
+
   private List<FieldConfig> fieldConfigs = new ArrayList<FieldConfig>();
 
-  public FormConfig setRenderer(FormLayoutRenderer renderer){
+  public FormConfig setRenderer(FormLayoutRenderer renderer) {
     this.renderer = renderer;
     return this;
   }
-  
+
   public FormConfig addFieldConfig(FieldConfig fieldConfig) {
     fieldConfigs.add(fieldConfig);
     return this;

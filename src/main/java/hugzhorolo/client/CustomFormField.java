@@ -6,6 +6,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CustomFormField extends FormField {
@@ -13,10 +14,10 @@ public class CustomFormField extends FormField {
   @Override
   public void onFieldConfigSet() {
   }
-  
+
   @Override
   public Widget asWidget() {
-    return null;
+    return new Label("TODO: implement CustomFormField");
   }
 
   @Override
@@ -38,7 +39,7 @@ public class CustomFormField extends FormField {
   }
 
   @Override
-  public void setValue(String key, JSONValue value, JSONValue formData) {
+  public void setValue(JSONValue value, JSONValue formData) {
   }
 
   @Override

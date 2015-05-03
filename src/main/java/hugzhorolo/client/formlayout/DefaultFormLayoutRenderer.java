@@ -7,11 +7,11 @@ import com.google.gwt.user.client.ui.Widget;
 public class DefaultFormLayoutRenderer extends VerticalPanel implements FormLayoutRenderer {
 
   private FormLayoutStyle style = Res.INST.get().style();
-  
+
   public DefaultFormLayoutRenderer() {
     addStyleName(style.DefaultFormLayoutRenderer());
     setSpacing(0);
-    
+
   }
 
   @Override
@@ -26,5 +26,5 @@ public class DefaultFormLayoutRenderer extends VerticalPanel implements FormLayo
     add(fieldTitle);
     add(field);
   }
-  
+
 }
