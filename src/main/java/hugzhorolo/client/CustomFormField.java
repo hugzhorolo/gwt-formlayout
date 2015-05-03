@@ -17,7 +17,7 @@ public class CustomFormField extends FormField {
 
   @Override
   public Widget asWidget() {
-    return new Label("TODO: implement CustomFormField");
+    return new Label("Your customized field");
   }
 
   @Override

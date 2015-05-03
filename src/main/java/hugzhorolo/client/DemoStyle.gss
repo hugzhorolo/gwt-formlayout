@@ -1,0 +1,18 @@
+.apply {
+	margin-top: 10px;
+	height: 25px;
+	line-height: 25px;
+	background-color: #d1d1d1;
+	border: 0 none;
+	color: #FFFFFF;
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: bold;
+	padding: 0 22px;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: top;
+	white-space: nowrap;
+	width: auto;
+	box-shadow: 0px 2px 0px #666666;
+}
