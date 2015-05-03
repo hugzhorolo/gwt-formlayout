@@ -1,9 +1,8 @@
 # gwt-formlayout
-Customizable form layout with json data binding
+Customizable, responsive form layout with json data binding
 
-![Demo form](https://raw.githubusercontent.com/hugzhorolo/gwt-formlayout/master/doc/DemoForm.png)
-
-## Demo code
+## Example
+![Form example](https://raw.githubusercontent.com/hugzhorolo/gwt-formlayout/master/doc/DemoForm.png)
 ```java
 JSONObject sampleData = new JSONObject();
 sampleData.put("Field 1", new JSONNumber(1.0));
@@ -19,3 +18,8 @@ button.addStyleName(style.apply());
 formLayout.appendWidgetToBottom(button);
 ```
 
+## Features
+* basic widgets with pretty design: textbox, listbox, checkbox
+* implemented with responsivity in mind
+* easily replacable fields
+* easily replacable layout
