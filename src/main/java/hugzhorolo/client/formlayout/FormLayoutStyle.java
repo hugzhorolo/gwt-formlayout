@@ -10,6 +10,8 @@ public interface FormLayoutStyle extends CssResource {
 
   String FieldTitle();
 
+  String ListBoxField();
+
   String TextBoxField();
 
 }

@@ -63,8 +63,10 @@ public class ListBoxField extends FormField {
 
   private ListBox listBox = new ListBox();
   private ListBoxConfig config;
+  private FormLayoutStyle style = Res.INST.get().style();
 
   public ListBoxField() {
+    listBox.addStyleName(style.ListBoxField());
   }
 
   @Override

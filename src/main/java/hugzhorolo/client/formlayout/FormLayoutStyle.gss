@@ -7,7 +7,7 @@
 }
 
 .FieldTitle {
-	margin-top: 4px;
+	margin-top: 12px;
 }
 
 .TextBoxField {
@@ -22,7 +22,7 @@
 }
 
 .CheckBoxField {
-	height: 16px;
+	height: 22px;
 }
 
 .CheckBoxField input {
@@ -46,4 +46,13 @@
 	color: #666;
 	text-align: center;
     line-height: 20px;
+}
+
+.ListBoxField {
+	width: 100%;
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #D1D1D1;
+	background-color: white;
+	
 }
