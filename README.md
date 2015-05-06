@@ -23,3 +23,5 @@ formLayout.appendWidgetToBottom(button);
 * implemented with responsivity in mind
 * easily replacable fields
 * easily replacable layout
+
+[Donate!](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MPTFKRPF7LUHL)
