@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
 // TODO: field key needed
+// TODO: new type instead of ValueChangeEvent to hold field
 public class App implements EntryPoint {
 
   private DemoStyle style = Res.INST.get().style();
@@ -101,6 +102,14 @@ public class App implements EntryPoint {
         } catch (Exception e) {
           e.printStackTrace();
         }
+      }
+    });
+
+    formLayout.setValueChangeHandler(new ValueChangeHandler<Void>() {
+
+      @Override
+      public void onValueChange(ValueChangeEvent<Void> event) {
+        Window.alert("Form item changed");
       }
     });
     RootPanel.get().add(formLayout);

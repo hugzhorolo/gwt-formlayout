@@ -7,4 +7,6 @@ public interface FormLayoutRenderer extends IsWidget {
   public void addField(FormField field);
 
   public void appendWidgetToBottom(IsWidget widget);
+
+  public void setFieldVisible(FormField field, boolean isVisible);
 }

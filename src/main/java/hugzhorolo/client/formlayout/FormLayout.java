@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONObject;
@@ -19,6 +20,16 @@ public class FormLayout extends FlowPanel {
   private FormConfig config;
   private List<String> fieldOrder;
   private List<FormField> fields = new ArrayList<FormField>();
+  private ValueChangeHandler<Void> formValueChangeHandler = new ValueChangeHandler<Void>() {
+
+    @Override
+    public void onValueChange(ValueChangeEvent<Void> event) {
+      if (handler != null) {
+        handler.onValueChange(event);
+      }
+    }
+  };
+  private ValueChangeHandler<Void> handler;
 
   public FormLayout(String dataJson) throws Exception {
     this(dataJson, new FormConfig());
@@ -79,6 +90,7 @@ public class FormLayout extends FlowPanel {
     }
     field.setValue(originalData.get(key), originalData);
     fields.add(field);
+    field.addValueChangeHandler(formValueChangeHandler);
     return field;
 
   }
@@ -101,7 +113,7 @@ public class FormLayout extends FlowPanel {
   }
 
   public void setFieldVisible(String key, boolean isVisible) throws Exception {
-    getField(key).setVisible(isVisible);
+    config.getRenderer().setFieldVisible(getField(key), isVisible);
   }
 
   public FormField getField(String key) throws Exception {
@@ -120,8 +132,15 @@ public class FormLayout extends FlowPanel {
     return getField(key).addValueChangeHandler(handler);
   }
 
-  public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Void> handler) {
-    return null;
+  public HandlerRegistration setValueChangeHandler(ValueChangeHandler<Void> handler) {
+    this.handler = handler;
+    return new HandlerRegistration() {
+
+      @Override
+      public void removeHandler() {
+        FormLayout.this.handler = null;
+      }
+    };
   }
 
   public void appendWidgetToBottom(IsWidget widget) {

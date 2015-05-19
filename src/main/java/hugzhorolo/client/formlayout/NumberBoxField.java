@@ -56,11 +56,6 @@ public class NumberBoxField extends FormField {
   }
 
   @Override
-  public void setVisible(boolean isVisible) {
-    textBox.setVisible(isVisible);
-  }
-
-  @Override
   public void setValue(JSONValue value, JSONValue formData) {
     textBox.setText("" + value.isNumber().doubleValue());
   }

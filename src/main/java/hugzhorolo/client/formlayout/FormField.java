@@ -27,7 +27,5 @@ public abstract class FormField implements IsWidget, HasValueChangeHandlers<Void
 
   public abstract String getValue();
 
-  public abstract void setVisible(boolean isVisible);
-
 
 }

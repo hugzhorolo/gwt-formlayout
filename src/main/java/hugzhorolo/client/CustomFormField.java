@@ -11,13 +11,15 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class CustomFormField extends FormField {
 
+  private Label label = new Label("Your customized field");
+
   @Override
   public void onFieldConfigSet() {
   }
 
   @Override
   public Widget asWidget() {
-    return new Label("Your customized field");
+    return label;
   }
 
   @Override
@@ -32,10 +34,6 @@ public class CustomFormField extends FormField {
 
   @Override
   public void fireEvent(GwtEvent<?> event) {
-  }
-
-  @Override
-  public void setVisible(boolean isVisible) {
   }
 
   @Override

@@ -1,7 +1,5 @@
 package hugzhorolo.client.formlayout;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
@@ -26,14 +24,6 @@ public class CheckBoxField extends FormField {
   public CheckBoxField() {
     panel.addStyleName(style.CheckBoxField());
     panel.add(checkBox);
-
-    panel.addClickHandler(new ClickHandler() {
-
-      @Override
-      public void onClick(ClickEvent event) {
-        checkBox.setValue(!checkBox.getValue(), true);
-      }
-    });
 
     panel.addKeyUpHandler(new KeyUpHandler() {
 
@@ -81,12 +71,6 @@ public class CheckBoxField extends FormField {
   public JSONValue getJsonValue() {
     return JSONBoolean.getInstance(checkBox.getValue());
   }
-
-  @Override
-  public void setVisible(boolean isVisible) {
-    checkBox.setVisible(isVisible);
-  }
-
 
   @Override
   public void setValue(JSONValue value, JSONValue formData) {

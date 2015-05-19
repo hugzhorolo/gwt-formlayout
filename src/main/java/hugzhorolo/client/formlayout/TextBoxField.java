@@ -79,12 +79,6 @@ public class TextBoxField extends FormField {
   }
 
   @Override
-  public void setVisible(boolean isVisible) {
-    textBox.setVisible(isVisible);
-  }
-
-
-  @Override
   public void setValue(String valueJson) {
     if (valueJson != null) {
       textBox.setText(JSONParser.parseStrict(valueJson).isString().stringValue());

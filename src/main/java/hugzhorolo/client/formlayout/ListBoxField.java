@@ -144,10 +144,4 @@ public class ListBoxField extends FormField {
   public String getValue() {
     return getJsonValue().toString();
   }
-
-  @Override
-  public void setVisible(boolean isVisible) {
-    listBox.setVisible(isVisible);
-  }
-
 }
