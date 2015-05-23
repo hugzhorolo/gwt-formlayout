@@ -2,6 +2,7 @@ package hugzhorolo.client.formlayout;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
@@ -56,24 +57,20 @@ public class TextBoxField extends FormField {
   }
 
   @Override
-  public String getValue() {
-    return new JSONString(textBox.getValue()).toString();
-  }
-
-  @Override
   public JSONValue getJsonValue() {
     return new JSONString(textBox.getValue());
   }
 
   @Override
   public void setValue(String valueJson) {
-    if (valueJson != null) {
+    if (valueJson != null)
+    {
       textBox.setText(JSONParser.parseStrict(valueJson).isString().stringValue());
     }
   }
 
   @Override
-  public void setValue(JSONValue value, JSONValue formData) {
+  public void setValue(JSONValue value, JSONObject formData) {
     if (value != null) {
       textBox.setText(value.isString().stringValue());
     }

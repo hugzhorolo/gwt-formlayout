@@ -7,14 +7,24 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.IsWidget;
 
-// TODO: too many setValue, too many getValue
+// TODO: too many setValue
 public abstract class FormField implements IsWidget, HasValueChangeHandlers<Void> {
 
-  private EventBus bus = new SimpleEventBus();
+  protected EventBus bus = new SimpleEventBus();
   protected FieldConfig fieldConfig;
+  protected FormLayout form;
+
+  void setFormLayout(FormLayout form) {
+    this.form = form;
+  }
+
+  public FormLayout getForm() {
+    return form;
+  }
 
   public void setFieldConfig(FieldConfig fieldConfig) {
     this.fieldConfig = fieldConfig;
@@ -37,13 +47,14 @@ public abstract class FormField implements IsWidget, HasValueChangeHandlers<Void
 
   public abstract void onFieldConfigSet();
 
-  public abstract void setValue(JSONValue value, JSONValue formData);
+  public abstract void setValue(JSONValue value, JSONObject formData);
 
   public abstract JSONValue getJsonValue();
 
   public abstract void setValue(String valueJson);
 
-  public abstract String getValue();
-
+  public String getValue() {
+    return getJsonValue().toString();
+  }
 
 }

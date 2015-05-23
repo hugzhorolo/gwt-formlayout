@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.json.client.JSONBoolean;
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -51,11 +52,6 @@ public class CheckBoxField extends FormField {
     return panel;
   }
 
-  @Override
-  public String getValue() {
-    return JSONBoolean.getInstance(checkBox.getValue()).toString();
-  }
-
 
   @Override
   public JSONValue getJsonValue() {
@@ -63,7 +59,7 @@ public class CheckBoxField extends FormField {
   }
 
   @Override
-  public void setValue(JSONValue value, JSONValue formData) {
+  public void setValue(JSONValue value, JSONObject formData) {
     if (value != null) {
       checkBox.setValue(value.isBoolean().booleanValue());
     }

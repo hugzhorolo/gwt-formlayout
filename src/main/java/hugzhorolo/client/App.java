@@ -23,7 +23,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
-// TODO: field key needed
 public class App implements EntryPoint {
 
   private DemoStyle style = Res.INST.get().style();
@@ -47,9 +46,9 @@ public class App implements EntryPoint {
 
   private void helloWorld() throws Exception {
     JSONObject sampleData = new JSONObject();
-    sampleData.put("Field 1", new JSONNumber(1.0));
-    sampleData.put("Field 2", new JSONString("Hello world"));
-    sampleData.put("Field 3", JSONBoolean.getInstance(true));
+    sampleData.put("Field1", new JSONNumber(1.0));
+    sampleData.put("Field2", new JSONString("Hello world"));
+    sampleData.put("Field3", JSONBoolean.getInstance(true));
 
     // Sample 1 - basic usage
     final FormLayout formLayout = new FormLayout(sampleData.toString());
@@ -70,35 +69,36 @@ public class App implements EntryPoint {
 
   private void basicConfiguration() throws Exception {
     JSONObject sampleData = new JSONObject();
-    sampleData.put("Field 1", new JSONNumber(1.0));
-    sampleData.put("Field 2", new JSONString("Hello world"));
-    sampleData.put("Field 3", JSONBoolean.getInstance(true));
-    sampleData.put("Field 4", new JSONString("Item 2"));
+    sampleData.put("Field1", new JSONNumber(1.0));
+    sampleData.put("Field2", new JSONString("Hello world"));
+    sampleData.put("Field3", JSONBoolean.getInstance(true));
+    sampleData.put("Field4", new JSONString("Item 2"));
 
     final FormLayout formLayout =
       new FormLayout(
         sampleData.toString(),
         new FormConfig()
           .addFieldConfig(
-            new FieldConfig("Field 1").setFieldWidget(new CustomFormField()))
+            new FieldConfig("Field1").setFieldWidget(new CustomFormField()).setFieldDisplayName(
+              "Field1 display name"))
           .addFieldConfig(
-            new FieldConfig("Field 2").setSpecificConfig(new TextBoxConfig().maxLength(3)))
+            new FieldConfig("Field2").setSpecificConfig(new TextBoxConfig().maxLength(3)))
           .addFieldConfig(
-            new FieldConfig("Field 4").setFieldWidget(new ListBoxField()).setSpecificConfig(
+            new FieldConfig("Field4").setFieldWidget(new ListBoxField()).setSpecificConfig(
               new ListBoxConfig().stringValues(
                 "Item 1",
                 "Item 2",
                 "Item 3")))
       );
 
-    formLayout.addValueChangeHandler("Field 3", new ValueChangeHandler<Void>() {
+    formLayout.addValueChangeHandler("Field3", new ValueChangeHandler<Void>() {
 
       @Override
       public void onValueChange(ValueChangeEvent<Void> event) {
         try {
           boolean field3Val =
-            JSONParser.parseStrict(formLayout.getDataJson()).isObject().get("Field 3").isBoolean().booleanValue();
-          formLayout.setFieldVisible("Field 1", field3Val);
+            JSONParser.parseStrict(formLayout.getDataJson()).isObject().get("Field3").isBoolean().booleanValue();
+          formLayout.setFieldVisible("Field1", field3Val);
         } catch (Exception e) {
           e.printStackTrace();
         }

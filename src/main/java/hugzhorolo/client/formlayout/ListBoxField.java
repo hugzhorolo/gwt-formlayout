@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.json.client.JSONNull;
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
@@ -18,11 +19,8 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * TODO: update value range
  * 
- * @author soti
  *
  */
-
-// TODO: fire on value change
 public class ListBoxField extends FormField {
 
   public static class ListBoxConfig {
@@ -107,7 +105,7 @@ public class ListBoxField extends FormField {
   }
 
   @Override
-  public void setValue(JSONValue value, JSONValue formData) {
+  public void setValue(JSONValue value, JSONObject formData) {
     setValue(value);
   }
 
@@ -140,8 +138,4 @@ public class ListBoxField extends FormField {
     }
   }
 
-  @Override
-  public String getValue() {
-    return getJsonValue().toString();
-  }
 }

@@ -5,6 +5,8 @@ public class FieldConfig {
 
   private String fieldName;
 
+  private String fieldDisplayName;
+
   private FormField fieldWidget;
 
   private Object formFieldSpecificConfig;
@@ -13,6 +15,12 @@ public class FieldConfig {
     super();
     this.fieldName = fieldName;
   }
+
+  public FieldConfig setFieldDisplayName(String fieldDisplayName) {
+    this.fieldDisplayName = fieldDisplayName;
+    return this;
+  }
+
 
   public FieldConfig setFieldWidget(FormField formField) {
     this.fieldWidget = formField;
@@ -26,6 +34,13 @@ public class FieldConfig {
 
   public String getFieldName() {
     return fieldName;
+  }
+
+  public String getFieldDisplayName() {
+    if (fieldDisplayName == null)
+      return fieldName;
+    else
+      return fieldDisplayName;
   }
 
   public FormField getFieldWidget() {

@@ -31,15 +31,15 @@ public class FormLayout extends FlowPanel {
   };
   private ValueChangeHandler<Void> handler;
 
-  public FormLayout(String dataJson) throws Exception {
+  public FormLayout(String dataJson) {
     this(dataJson, new FormConfig());
   }
 
-  public FormLayout(String dataJson, FormConfig config) throws Exception {
+  public FormLayout(String dataJson, FormConfig config) {
     this(JSONParser.parseLenient(dataJson).isObject(), config);
   }
 
-  public FormLayout(JSONObject dataJson, FormConfig config) throws Exception {
+  public FormLayout(JSONObject dataJson, FormConfig config) {
     originalData = dataJson;
     this.config = config;
     calcFieldOrder();
@@ -53,7 +53,7 @@ public class FormLayout extends FlowPanel {
     }
   }
 
-  private void renderFields() throws Exception {
+  private void renderFields() {
     for (String key : fieldOrder) {
       FormField field = createField(key);
       config.getRenderer().addField(field);
@@ -61,7 +61,7 @@ public class FormLayout extends FlowPanel {
     add(config.getRenderer());
   }
 
-  private FormField createField(String key) throws Exception {
+  private FormField createField(String key) {
     FieldConfig fieldConfig = config.getFieldConfigs(key);
 
     FormField field = null;
@@ -75,7 +75,7 @@ public class FormLayout extends FlowPanel {
       } else if (originalData.get(key).isNumber() != null) {
         field = new NumberBoxField();
       } else {
-        throw new Exception("Cannot render field (type not supported): " + key
+        throw new RuntimeException("Cannot render field (type not supported): " + key
           + ". Consider using custom field (FieldConfig.setFieldWidget)");
       }
     }
@@ -88,6 +88,7 @@ public class FormLayout extends FlowPanel {
       throw new RuntimeException("Invalid config provided for field: " + key +
         "(" + field.getClass() + ", " + fieldConfig.getFormFieldSpecificConfig().getClass() + ")");
     }
+    field.setFormLayout(this);
     field.setValue(originalData.get(key), originalData);
     fields.add(field);
     field.addValueChangeHandler(formValueChangeHandler);
@@ -112,11 +113,11 @@ public class FormLayout extends FlowPanel {
     return null;
   }
 
-  public void setFieldVisible(String key, boolean isVisible) throws Exception {
+  public void setFieldVisible(String key, boolean isVisible) {
     config.getRenderer().setFieldVisible(getField(key), isVisible);
   }
 
-  public FormField getField(String key) throws Exception {
+  public FormField getField(String key) {
     int index = 0;
     for (String field : fieldOrder) {
       if (field.equals(key)) {
@@ -124,7 +125,7 @@ public class FormLayout extends FlowPanel {
       }
       index++;
     }
-    throw new Exception("Field not found: " + key);
+    throw new RuntimeException("Field not found: " + key);
   }
 
   public HandlerRegistration addValueChangeHandler(String key, ValueChangeHandler<Void> handler)
@@ -145,5 +146,9 @@ public class FormLayout extends FlowPanel {
 
   public void appendWidgetToBottom(IsWidget widget) {
     config.getRenderer().appendWidgetToBottom(widget);
+  }
+
+  public String getFieldValue(String key) {
+    return getField(key).getValue();
   }
 }

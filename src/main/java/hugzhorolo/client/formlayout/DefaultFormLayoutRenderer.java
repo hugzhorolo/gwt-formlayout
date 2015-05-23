@@ -27,7 +27,7 @@ public class DefaultFormLayoutRenderer extends VerticalPanel implements FormLayo
 
   @Override
   public void addField(FormField field) {
-    Label fieldTitle = new Label(field.getFieldConfig().getFieldName());
+    Label fieldTitle = new Label(field.getFieldConfig().getFieldDisplayName());
     fieldTitle.addStyleName(style.FieldTitle());
     FlowPanel wrapperPanel = new FlowPanel();
     wrapperPanel.add(fieldTitle);
