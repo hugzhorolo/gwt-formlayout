@@ -9,6 +9,7 @@ import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
+// TODO: Validation, parsing
 public class NumberBoxField extends FormField {
 
   private TextBox textBox = new TextBox();

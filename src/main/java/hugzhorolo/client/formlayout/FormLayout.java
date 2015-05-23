@@ -128,6 +128,22 @@ public class FormLayout extends FlowPanel {
     throw new RuntimeException("Field not found: " + key);
   }
 
+  public CheckBoxField getCheckBoxField(String key) {
+    return (CheckBoxField) getField(key);
+  }
+
+  public ListBoxField getListBoxField(String key) {
+    return (ListBoxField) getField(key);
+  }
+
+  public TextBoxField getTextBoxField(String key) {
+    return (TextBoxField) getField(key);
+  }
+
+  public NumberBoxField getNumberBoxField(String key) {
+    return (NumberBoxField) getField(key);
+  }
+
   public HandlerRegistration addValueChangeHandler(String key, ValueChangeHandler<Void> handler)
     throws Exception {
     return getField(key).addValueChangeHandler(handler);

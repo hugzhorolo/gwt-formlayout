@@ -8,6 +8,9 @@ import hugzhorolo.client.formlayout.ListBoxField;
 import hugzhorolo.client.formlayout.ListBoxField.ListBoxConfig;
 import hugzhorolo.client.formlayout.TextBoxField.TextBoxConfig;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -73,6 +76,7 @@ public class App implements EntryPoint {
     sampleData.put("Field2", new JSONString("Hello world"));
     sampleData.put("Field3", JSONBoolean.getInstance(true));
     sampleData.put("Field4", new JSONString("Item 2"));
+    sampleData.put("Field5", new JSONNumber(1.0));
 
     final FormLayout formLayout =
       new FormLayout(
@@ -110,7 +114,8 @@ public class App implements EntryPoint {
       @Override
       public void onValueChange(ValueChangeEvent<Void> event) {
         Window.alert("Form item changed: "
-          + ((FormField) event.getSource()).getFieldConfig().getFieldName());
+          + ((FormField) event.getSource()).getFieldConfig().getFieldName()
+          + ", new value: " + ((FormField) event.getSource()).getValue());
       }
     });
     RootPanel.get().add(formLayout);
@@ -125,6 +130,21 @@ public class App implements EntryPoint {
       }
     });
 
+
+    Button updateValueRangeButton = new Button("Update value range of listbox");
+    updateValueRangeButton.addStyleName(style.apply());
+    updateValueRangeButton.addClickHandler(new ClickHandler() {
+
+      @Override
+      public void onClick(ClickEvent event) {
+        Map<String, String> newValueRange = new TreeMap<String, String>();
+        newValueRange.put("newItem1Key", "New Item 1");
+        newValueRange.put("newItem2Key", "New Item 2");
+        formLayout.getListBoxField("Field4").updateValueRange(newValueRange);
+      }
+    });
+
     formLayout.appendWidgetToBottom(button);
+    formLayout.appendWidgetToBottom(updateValueRangeButton);
   }
 }

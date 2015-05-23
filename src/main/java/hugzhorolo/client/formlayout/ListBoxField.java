@@ -16,11 +16,6 @@ import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-/**
- * TODO: update value range
- * 
- *
- */
 public class ListBoxField extends FormField {
 
   public static class ListBoxConfig {
@@ -51,11 +46,11 @@ public class ListBoxField extends FormField {
       return this;
     }
 
-    public List<String> getStringValuesOrNull() {
+    private List<String> getStringValuesOrNull() {
       return stringValuesOrNull;
     }
 
-    public Map<String, String> getAnyValueWithDisplayNameOrNull() {
+    private Map<String, String> getAnyValueWithDisplayNameOrNull() {
       return anyValueWithDisplayNameOrNull;
     }
 
@@ -134,8 +129,29 @@ public class ListBoxField extends FormField {
     if (config.stringValuesOrNull != null) {
       return new JSONString(listBox.getSelectedValue());
     } else {
-      return JSONParser.parseStrict(listBox.getSelectedValue());
+      return new JSONString(listBox.getSelectedValue());
     }
+  }
+
+  public void updateValueRange(Map<String, String> anyValueWithDisplayName) {
+    listBox.clear();
+    config.stringValuesOrNull = null;
+    config.anyValueWithDisplayNameOrNull = anyValueWithDisplayName;
+    setValueRange();
+  }
+
+  public void updateValueRange(List<String> stringValues) {
+    listBox.clear();
+    config.anyValueWithDisplayNameOrNull = null;
+    config.stringValuesOrNull = stringValues;
+    setValueRange();
+  }
+
+  public void updateValueRange(String... values) {
+    listBox.clear();
+    config.anyValueWithDisplayNameOrNull = null;
+    config.stringValuesOrNull = Arrays.asList(values);
+    setValueRange();
   }
 
 }
