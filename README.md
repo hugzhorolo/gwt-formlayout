@@ -27,6 +27,8 @@ formLayout.appendWidgetToBottom(button);
 
 ## Usage (TODO)
 ### Subscribe to value change events
+### Set display name for fields
+### General field configuration
 ### TextBox configuration
 ### NumberTextBox configuration
 ### CheckBox configuration
