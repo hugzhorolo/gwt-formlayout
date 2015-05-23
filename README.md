@@ -23,5 +23,17 @@ formLayout.appendWidgetToBottom(button);
 * implemented with responsivity in mind
 * easily replacable fields
 * easily replacable layout
+* valid/invalid fields
+
+## Usage (TODO)
+### Subscribe to value change events
+### TextBox configuration
+### NumberTextBox configuration
+### CheckBox configuration
+### ListBox configuration
+### Implement custom form field widget
+### Implement custom from layout
+### Display errors on form
+
 
 [Donate!](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MPTFKRPF7LUHL)
