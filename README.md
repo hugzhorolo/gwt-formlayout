@@ -26,6 +26,7 @@ formLayout.appendWidgetToBottom(button);
 * valid/invalid fields
 
 ## Usage (TODO)
+### Use gwt-formlayout in your project
 ### Subscribe to value change events
 ### Set display name for fields
 ### General field configuration
