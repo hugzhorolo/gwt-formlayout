@@ -2,9 +2,6 @@ package hugzhorolo.client;
 
 import hugzhorolo.client.formlayout.FormField;
 
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -25,15 +22,6 @@ public class CustomFormField extends FormField {
   @Override
   public String getValue() {
     return null;
-  }
-
-  @Override
-  public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Void> handler) {
-    return null;
-  }
-
-  @Override
-  public void fireEvent(GwtEvent<?> event) {
   }
 
   @Override

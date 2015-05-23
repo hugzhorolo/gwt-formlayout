@@ -2,8 +2,6 @@ package hugzhorolo.client.formlayout;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
@@ -35,6 +33,13 @@ public class TextBoxField extends FormField {
 
   public TextBoxField() {
     textBox.addStyleName(style.TextBoxField());
+    textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+      @Override
+      public void onValueChange(ValueChangeEvent<String> event) {
+        ValueChangeEvent.fire(TextBoxField.this, null);
+      }
+    });
   }
 
   @Override
@@ -55,27 +60,9 @@ public class TextBoxField extends FormField {
     return new JSONString(textBox.getValue()).toString();
   }
 
-
   @Override
   public JSONValue getJsonValue() {
     return new JSONString(textBox.getValue());
-  }
-
-
-  @Override
-  public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Void> handler) {
-    return textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
-
-      @Override
-      public void onValueChange(ValueChangeEvent<String> event) {
-        handler.onValueChange(null);
-      }
-    });
-  }
-
-  @Override
-  public void fireEvent(GwtEvent<?> event) {
-    textBox.fireEvent(event);
   }
 
   @Override

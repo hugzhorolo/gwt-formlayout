@@ -2,6 +2,7 @@ package hugzhorolo.client;
 
 import hugzhorolo.client.formlayout.FieldConfig;
 import hugzhorolo.client.formlayout.FormConfig;
+import hugzhorolo.client.formlayout.FormField;
 import hugzhorolo.client.formlayout.FormLayout;
 import hugzhorolo.client.formlayout.ListBoxField;
 import hugzhorolo.client.formlayout.ListBoxField.ListBoxConfig;
@@ -23,7 +24,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
 // TODO: field key needed
-// TODO: new type instead of ValueChangeEvent to hold field
 public class App implements EntryPoint {
 
   private DemoStyle style = Res.INST.get().style();
@@ -109,7 +109,8 @@ public class App implements EntryPoint {
 
       @Override
       public void onValueChange(ValueChangeEvent<Void> event) {
-        Window.alert("Form item changed");
+        Window.alert("Form item changed: "
+          + ((FormField) event.getSource()).getFieldConfig().getFieldName());
       }
     });
     RootPanel.get().add(formLayout);

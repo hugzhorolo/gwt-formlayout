@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.json.client.JSONNull;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
@@ -21,6 +21,8 @@ import com.google.gwt.user.client.ui.Widget;
  * @author soti
  *
  */
+
+// TODO: fire on value change
 public class ListBoxField extends FormField {
 
   public static class ListBoxConfig {
@@ -67,20 +69,18 @@ public class ListBoxField extends FormField {
 
   public ListBoxField() {
     listBox.addStyleName(style.ListBoxField());
+    listBox.addChangeHandler(new ChangeHandler() {
+
+      @Override
+      public void onChange(ChangeEvent event) {
+        ValueChangeEvent.fire(ListBoxField.this, null);
+      }
+    });
   }
 
   @Override
   public Widget asWidget() {
     return listBox;
-  }
-
-  @Override
-  public HandlerRegistration addValueChangeHandler(ValueChangeHandler<Void> handler) {
-    return null;
-  }
-
-  @Override
-  public void fireEvent(GwtEvent<?> event) {
   }
 
   @Override
